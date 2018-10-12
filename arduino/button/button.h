@@ -20,7 +20,7 @@ typedef struct button_t{
   uint8_t state;
   uint8_t press_state;
   uint8_t last_press_state;
-  void (*readState) (struct button_t*);
+  void (*readState) (struct button_t*); // Ponteiro para a função a ser executada para verificar o estado do botão
 } button_t;
 
 // Inicializa um botão com as configurações dadas e reinicia os dados dele

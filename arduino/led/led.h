@@ -8,11 +8,22 @@
 
 #include "../main/arduino.h"
 
-#define setPinAsLed(pin_code) (setPinMode(pin_code, OUTPUT)) // Configura um pino como led
-void lightLed(uint8_t pin_code); // Altera seu estado para ligado
-void turnOffLed(uint8_t pin_code); // Altera seu estado para desligado
-void changeStateLed(uint8_t pin_code); // Inverte o estado atual
-void setStateLed(uint8_t pin_code, uint8_t state); // Configura o estado do led
-void blinkTimeLed(uint8_t pin_code, uint8_t time); // Liga o led por um tempo (em ms) e o desliga
+// Configura um pino como led
+#define setPinAsLed(pin_code) (setPinMode(pin_code, OUTPUT))
+
+// Altera seu estado para ligado
+#define lightLed(pin_code) (digitalWrite(pin_code, HIGH))
+
+// Altera seu estado para desligado
+#define turnOffLed(pin_code) (digitalWrite(pin_code, LOW))
+
+// Inverte o estado atual
+#define changeStateLed(pin_code) (switchDigitalOutput(pin_code))
+
+// Configura o estado do led
+#define setStateLed(pin_code, state) (digitalWrite(pin_code, state))
+
+// Liga o led por um tempo (em ms) e o desliga
+void blinkTimeLed(uint8_t pin_code, uint8_t time);
 
 #endif /* LED_H */

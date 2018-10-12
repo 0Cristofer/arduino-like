@@ -10,14 +10,6 @@ Rotina de delay com precisão de milissegundo;
 Interface para utilização de LEDs:
 Rotina para piscar (deixar aceso) o LED por um tempo;
 
-Trabalhar com o display 7-segmentos:
-Configurar o display para trabalhar com os pinos especificados (a,b,c,d,e,f,g,h);
-Escrever um dígito hexadecimal no display;
-
 Trabalhar com o sensor de distância (ultrassom):
 Configurar o sensor para trabalhar com os pinos especificados (trigger e echo);
 Medir distância observada (ping);
-
-Trabalhar com o sensor de temperatura e umidade DHT11:
-Configurar o sensor para trabalhar com o pino especificado (data);
-Realizar mensuração da temperatura e umidade;

@@ -61,7 +61,12 @@ void digitalWrite(uint8_t pin_code, uint8_t value){
     set_low(*(uint8_t*)pgm_read_ptr(&pin_list[pin_code].port),  pgm_read_byte(&pin_list[pin_code].px));
 }
 
+void switchDigitalOutput(uint8_t pin_code){
+  switch_bit(*(uint8_t*)pgm_read_ptr(&pin_list[pin_code].port), pgm_read_byte(&pin_list[pin_code].px));
+}
+
 void setPullUp(uint8_t pin_code){
+  setPinMode(pin_code, INPUT);
   digitalWrite(pin_code, HIGH);
 }
 
