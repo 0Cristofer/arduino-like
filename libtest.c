@@ -1,26 +1,19 @@
 #include <stdio.h>
-#include <util/delay.h>
 
-#include "arduino/main/arduino.h"
-#include "arduino/button/button.h"
-#include "arduino/dp7s/dp7s.h"
+#include "arduino/sonar/sonar.h"
+#include "arduino/uart/uart.h"
 
-dp7s_t dp7s;
-button_t button;
-uint8_t num = 0;
+uint8_t trigger = 11;
+uint8_t echo = 10;
+
+sonar_t sonar;
 
 void setup(){
-  initButton(4, PRESS_BUTTON, &button);
-  init7sDisplay(&dp7s, 6, 7, 8, 9, 10, 11, 12, 13, DP7S_CATODO);
+  uart_init();
+
+  initSonar(&sonar, trigger, echo);
 }
 
 void loop(){
-  lightNumber(&dp7s, 1);
-
-  /*button.readState(&button);
-  if(button.state){
-    num = (num + 1) % 16;
-  }*/
-  while(1);
-  _delay_ms(100);
+  printf("Distance: %d cm\n", readSonar(&sonar));
 }

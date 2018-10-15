@@ -9,19 +9,6 @@
 
 #include <avr/io.h>
 
-// Frequência da CPU do atmega328p
-#define F_CPU 16000000UL
-
-// Macros para manipulação dos registradores
-#define set_as_input(port, pin) (port &= ~(1<<pin))
-#define set_as_output(port, pin) (port |= (1<<pin))
-#define set_high(port, pin) (port |= (1<<pin))
-#define set_low(port, pin) (port &= ~(1<<pin))
-#define read_bit(port, pin) (port&(1<<pin))
-#define switch_bit(port, pin) (port ^= (1<<pin))
-
-#define PIN_QUANTITY 20 // Quantidade de pinos de entrada no total
-
 // Tipos possíveis para os pinos
 #define OUTPUT 0
 #define INPUT 1
