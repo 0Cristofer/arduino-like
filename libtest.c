@@ -1,19 +1,16 @@
-#include <stdio.h>
 
-#include "arduino/sonar/sonar.h"
-#include "arduino/uart/uart.h"
+#include "arduino/main/arduino.h"
+#include "arduino/delay/delay.h"
 
-uint8_t trigger = 11;
-uint8_t echo = 10;
-
-sonar_t sonar;
+uint8_t led = 10;
 
 void setup(){
-  uart_init();
-
-  initSonar(&sonar, trigger, echo);
+  setPinMode(led, OUTPUT);
 }
 
 void loop(){
-  printf("Distance: %d cm\n", readSonar(&sonar));
+  digitalWrite(led, 1);
+  delay_ms(10000);
+  digitalWrite(led, 0);
+  delay_ms(10000);
 }

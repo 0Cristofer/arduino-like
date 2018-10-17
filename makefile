@@ -1,5 +1,5 @@
 NOME = libtest
-LIBS = arduino/main/arduino.c arduino/uart/uart.c arduino/sonar/sonar.c
+LIBS = arduino/main/arduino.c arduino/uart/uart.c arduino/sonar/sonar.c arduino/delay/delay.c
 ARQUIVO = $(NOME).c
 ELF = $(NOME).elf
 SAIDA = $(NOME)
@@ -9,7 +9,7 @@ all:
 	avr-objcopy -O ihex -R .eeprom $(ELF) $(SAIDA)
 
 install:
-	avrdude -V -p atmega328p -c arduino -P /dev/ttyUSB0 -b 115200 -D -Uflash:w:$(SAIDA):i
+	avrdude -V -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -Uflash:w:$(SAIDA):i
 
 clean:
 	rm $(ELF)
