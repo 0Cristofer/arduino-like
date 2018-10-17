@@ -13,14 +13,17 @@
 #define PRESS_BUTTON 0
 #define STATE_BUTTON 1
 
-// Definição de um botão
+// Definição da estrutura de um botão
 typedef struct button_t{
   uint8_t pin_code;
   uint8_t button_type;
   uint8_t state;
   uint8_t press_state;
   uint8_t last_press_state;
-  void (*readState) (struct button_t*); // Ponteiro para a função a ser executada para verificar o estado do botão
+  void (*readState) (struct button_t*); /* Ponteiro para a função a ser
+                                           executada para verificar o estado do
+                                           botão. Deve ser executado dentro
+                                           do loop principal */
 } button_t;
 
 // Inicializa um botão com as configurações dadas e reinicia os dados dele

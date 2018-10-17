@@ -1,16 +1,30 @@
-
 #include "arduino/main/arduino.h"
-#include "arduino/delay/delay.h"
+#include "arduino/dp7s/dp7s.h"
 
-uint8_t led = 10;
+dp7s_t dp7s;
 
 void setup(){
-  setPinMode(led, OUTPUT);
+  initDp7s(3, 4, 5, 6, 7, 8, 9, 10, DP7S_CATODO, &dp7s);
 }
 
 void loop(){
-  digitalWrite(led, 1);
-  delay_ms(10000);
-  digitalWrite(led, 0);
-  delay_ms(10000);
+  uint8_t number = 0;
+
+  while(1){
+    lightNumber(number % 16, &dp7s);
+
+    number = number + 1;
+
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+    delay_us(65000);
+  }
 }

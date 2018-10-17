@@ -3,12 +3,9 @@
    Criado: 09/10/2018
    Modificado: 09/10/2018 */
 
-#include <util/delay.h>
-
 #include "button.h"
-#include "../main/arduino.h"
 
-// Lê o estado de um botão de estados. Deve ser executado dentro do loop principal
+// Lê o estado de um botão de estados
 void readButtonState(button_t* button){
   uint8_t pressed;
 
@@ -21,21 +18,21 @@ void readButtonState(button_t* button){
       button->state = !button->state;
     }
 
-    _delay_ms(DEBOUNCE_RATE);
+    delay_ms(DEBOUNCE_RATE);
   }
   else{
     button->last_press_state = button->press_state;
-    _delay_ms(DEBOUNCE_RATE);
+    delay_ms(DEBOUNCE_RATE);
   }
 }
 
-// Lê o estado do botão precionável. Deve ser executado dentro do loop principal
+// Lê o estado do botão pressionável
 void readButtonPress(button_t* button){
-  _delay_ms(DEBOUNCE_RATE);
+  delay_ms(DEBOUNCE_RATE);
 
   button->state = !digitalRead(button->pin_code);
 
-  _delay_ms(DEBOUNCE_RATE);
+  delay_ms(DEBOUNCE_RATE);
 }
 
 void initButton(uint8_t pin_code, uint8_t button_type, button_t* button){

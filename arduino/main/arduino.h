@@ -1,8 +1,8 @@
 /* Header básico para utilização da biblioteca Arduino. Contém definições dos
-   pinos e entrada e saída básica.
+   pinos de entrada e saída básica e delays de ms e us.
    Autor: Crisofer Oswald e Narcizo Gabriel
    Criado: 05/10/2018
-   Modificado: 10/10/2018 */
+   Modificado: 17/10/2018 */
 
 #ifndef PINS_H
 #define PINS_H
@@ -31,16 +31,22 @@ enum{
 // Configura o modo do pino
 void setPinMode(uint8_t pin_code, uint8_t mode);
 
-// Lê o valor de um pino e retorna por referência
+// Lê o valor de um pino e o retorna
 uint8_t digitalRead(uint8_t pin_code);
 
 // Escreve um valor digital no pino
 void digitalWrite(uint8_t pin_code, uint8_t value);
 
-// Inberte o sinal de Output do pino pin_code
+// Inverte o sinal digital de saída do pino
 void switchDigitalOutput(uint8_t pin_code);
 
 // Configura o resistor pull-up do pino
 void setPullUp(uint8_t pin_code);
+
+// Realiza um delay na execução de aproximadamente 1 milissegundo
+void delay_ms(uint16_t delay);
+
+// Realiza um delay na execução de aproximadamente 1 microssegundo
+void delay_us(uint16_t delay);
 
 #endif /* PINS_H */

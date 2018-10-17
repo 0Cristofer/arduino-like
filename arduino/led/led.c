@@ -1,17 +1,14 @@
 /* Definições para manipulações com led.
    Autor: Crisofer Oswald e Narcizo Gabriel
    Criado: 09/10/2018
-   Modificado: 10/10/2018 */
-
-#include <util/delay.h>
+   Modificado: 17/10/2018 */
 
 #include "led.h"
 
-void blinkTimeLed(uint8_t pin_code, uint8_t time){
+void blinkTimeLed(uint8_t pin_code, uint16_t time){
   digitalWrite(pin_code, HIGH);
 
-  _delay_ms(200); // TODO utilizar delay próprio
+  delay_ms(time);
 
   digitalWrite(pin_code, LOW);
-
 }

@@ -2,14 +2,12 @@
    manipulação de pinos do Arduino.
    Autor: Cristofer Oswald e Narcizo Gabriel
    Criado: 05/10/2018
-   Modificado: 09/10/2018 */
+   Modificado: 10/10/2018 */
 
 #include <avr/pgmspace.h>
 
 #include "arduino.h"
-
-// Frequência da CPU do atmega328p
-#define F_CPU 16000000UL
+#include "uart/uart.h"
 
 // Macros para manipulação dos registradores
 #define set_as_input(port, pin) (port &= ~(1<<pin))
@@ -18,8 +16,6 @@
 #define set_low(port, pin) (port &= ~(1<<pin))
 #define read_bit(port, pin) (port&(1<<pin))
 #define switch_bit(port, pin) (port ^= (1<<pin))
-
-#define PIN_QUANTITY 20 // Quantidade de pinos de entrada no total
 
 // Dados referetes a um pin
 typedef struct pin_t{
@@ -83,8 +79,48 @@ void setPullUp(uint8_t pin_code){
   digitalWrite(pin_code, HIGH);
 }
 
+void delay_ms(uint16_t delay){
+    //delay = delay * 1000;
+    /*while(delay){
+        asm volatile(
+            "ldi  r18, 5;"
+        "LB: dec  r18;"
+            "brne LB;"
+            "nop;"
+        );
+
+        delay = delay - 1;
+    }*/
+    while(delay){
+        asm volatile(
+            "ldi  r22, 21;"
+            "ldi  r23, 199;"
+        "L1:"
+            "dec  r23;"
+            "brne L1;"
+            "dec  r22;"
+            "brne L1;"
+        );
+
+        delay = delay - 1;
+    }
+}
+
+void delay_us(uint16_t delay){
+    while(delay){
+        asm volatile(
+            "ldi  r18, 5;"
+        "LB: dec  r18;"
+            "brne LB;"
+        );
+
+        delay = delay - 1;
+    }
+}
+
 // Função main do programa
 int main(){
+  uart_init();
   setup();
 
   while(1){

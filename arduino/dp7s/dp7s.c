@@ -1,11 +1,13 @@
-#include <avr/io.h>
-#include <util/delay.h>
+/* Definições para utilização de displays de 7 segmentos.
+   Autor: Crisofer Oswald e Narcizo Gabriel
+   Criado: 10/10/2018
+   Modificado: 17/10/2018 */
 
 #include "../main/arduino.h"
 #include "dp7s.h"
 
-void init7sDisplay(dp7s_t* dp7s, uint8_t a, uint8_t b, uint8_t c, uint8_t d,
-                   uint8_t e, uint8_t f, uint8_t g, uint8_t h, uint8_t type){
+void initDp7s(uint8_t a, uint8_t b, uint8_t c, uint8_t d, uint8_t e,
+              uint8_t f, uint8_t g, uint8_t h, uint8_t type, dp7s_t* dp7s){
   setPinMode(a, OUTPUT);
   setPinMode(b, OUTPUT);
   setPinMode(c, OUTPUT);
@@ -32,7 +34,7 @@ void lightAll(dp7s_t* dp7s){
   digitalWrite(dp7s->g, dp7s->type);
 }
 
-void lightNumber(dp7s_t* dp7s, uint8_t number){
+void lightNumber(uint8_t number, dp7s_t* dp7s){
   switch(number){
     case 0:
       lightAll(dp7s);
