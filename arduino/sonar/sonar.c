@@ -50,5 +50,5 @@ uint16_t readSonar(sonar_t* sonar){
 
   delayMs(60);
 
-  return ((uint16_t)time/29);
+  return ((uint16_t)time/14);
 }

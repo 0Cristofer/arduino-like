@@ -79,27 +79,16 @@ void setPullUp(uint8_t pin_code){
 }
 
 void delayMs(uint16_t delay){
-    //delay = delay * 1000;
-    /*while(delay){
-        asm volatile(
-            "ldi  r18, 5;"
-        "LB: dec  r18;"
-            "brne LB;"
-            "nop;"
-        );
-
-        delay = delay - 1;
-    }*/
     while(delay){
-        asm volatile(
-            "ldi  r22, 21;"
-            "ldi  r23, 199;"
-        "L1:"
-            "dec  r23;"
-            "brne L1;"
-            "dec  r22;"
-            "brne L1;"
-        );
+    asm volatile (
+        "    ldi  r18, 21"	"\n"
+        "    ldi  r19, 196"	"\n"
+        "1:  dec  r19"	"\n"
+        "    brne 1b"	"\n"
+        "    dec  r18"	"\n"
+        "    brne 1b"	"\n"
+        "    nop"	"\n"
+    );
 
         delay = delay - 1;
     }
@@ -107,12 +96,12 @@ void delayMs(uint16_t delay){
 
 void delayUs(uint16_t delay){
     while(delay){
-        asm volatile(
-            "ldi  r18, 5;"
-        "LB: dec  r18;"
-            "brne LB;"
-        );
-
+    asm volatile (
+        "    lpm"	"\n"
+        "    lpm"	"\n"
+        "    rjmp 1f"	"\n"
+        "1:"	"\n"
+    );
         delay = delay - 1;
     }
 }

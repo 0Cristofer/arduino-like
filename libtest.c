@@ -1,19 +1,26 @@
 #include "arduino/led/led.h"
-#include "arduino/button/button.h"
+#include "arduino/main/arduino.h"
+#include "arduino/sonar/sonar.h"
+#include "uart/uart.h"
 
 uint8_t pin_led = 8;
-uint8_t pin_button = 9;
+uint8_t trigger = 11;
+uint8_t echo = 12;
 
-button_t button;
+sonar_t sonar;
+
 
 void setup(){
+  uart_init();
   setPinAsLed(pin_led);
-  initButton(pin_button, PRESS_BUTTON, &button);
+  initSonar(trigger, echo, &sonar);
 }
 
 void loop(){
   while(1){
-    button.readState(&button);
-    setStateLed(pin_led, button.state);
+    // changeStateLed(pin_led);
+    // delayMs(5000);
+    // blinkTimeLed(pin_led, 500);
+    printf("distancia = %d cm\n", readSonar(&sonar));
   }
 }
