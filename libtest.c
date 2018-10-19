@@ -1,30 +1,19 @@
-#include "arduino/main/arduino.h"
-#include "arduino/dp7s/dp7s.h"
+#include "arduino/led/led.h"
+#include "arduino/button/button.h"
 
-dp7s_t dp7s;
+uint8_t pin_led = 8;
+uint8_t pin_button = 9;
+
+button_t button;
 
 void setup(){
-  initDp7s(3, 4, 5, 6, 7, 8, 9, 10, DP7S_CATODO, &dp7s);
+  setPinAsLed(pin_led);
+  initButton(pin_button, PRESS_BUTTON, &button);
 }
 
 void loop(){
-  uint8_t number = 0;
-
   while(1){
-    lightNumber(number % 16, &dp7s);
-
-    number = number + 1;
-
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
-    delay_us(65000);
+    button.readState(&button);
+    setStateLed(pin_led, button.state);
   }
 }

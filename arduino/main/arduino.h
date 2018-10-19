@@ -17,12 +17,6 @@
 #define LOW 0
 #define HIGH 1
 
-// Função utilizada para inicializações. Deve ser implementada
-void setup();
-
-// Função executada enquanto o Arduino estiver em funcionamento. Deve ser implementada
-void loop();
-
 // Enum de pinos analógicos
 enum{
   A0 = 14, A1, A2, A3, A4, A5
@@ -44,9 +38,15 @@ void switchDigitalOutput(uint8_t pin_code);
 void setPullUp(uint8_t pin_code);
 
 // Realiza um delay na execução de aproximadamente 1 milissegundo
-void delay_ms(uint16_t delay);
+void delayMs(uint16_t delay);
 
 // Realiza um delay na execução de aproximadamente 1 microssegundo
-void delay_us(uint16_t delay);
+void delayUs(uint16_t delay);
+
+// Função utilizada para inicializações. Deve ser implementada
+void setup();
+
+// Função executada enquanto o Arduino estiver em funcionamento. Deve ser implementada
+void loop();
 
 #endif /* PINS_H */

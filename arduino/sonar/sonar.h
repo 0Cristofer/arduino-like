@@ -11,7 +11,7 @@ typedef struct{
 } sonar_t;
 
 // Inicializa a estrutura do sonar, configurando o trigger e echo
-void initSonar(sonar_t* sonar, uint8_t trigger, uint8_t echo);
+void initSonar(uint8_t trigger, uint8_t echo, sonar_t* sonar);
 
-// Lê os dados do sonar, calcula a distância do objeto em frente e a retorna 
+// Lê os dados do sonar, calcula a distância do objeto em frente e a retorna
 uint16_t readSonar(sonar_t* sonar);

@@ -1,6 +1,0 @@
-Geração de onda nos pinos
-Escrever onda quadrada em um pino de saída (que suporte essa função) com frequência determinada pelo usuário;
-Escrever onda PWM em um pino de saída (que suporte essa função) com ciclo-ativo determinado pelo usuário;
-
-Ajustar tempo do sonar
-Arrumar delay próprio

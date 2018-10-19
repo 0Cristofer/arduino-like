@@ -18,21 +18,21 @@ void readButtonState(button_t* button){
       button->state = !button->state;
     }
 
-    delay_ms(DEBOUNCE_RATE);
+    delayMs(DEBOUNCE_RATE);
   }
   else{
     button->last_press_state = button->press_state;
-    delay_ms(DEBOUNCE_RATE);
+    delayMs(DEBOUNCE_RATE);
   }
 }
 
 // Lê o estado do botão pressionável
 void readButtonPress(button_t* button){
-  delay_ms(DEBOUNCE_RATE);
+  delayMs(DEBOUNCE_RATE);
 
   button->state = !digitalRead(button->pin_code);
 
-  delay_ms(DEBOUNCE_RATE);
+  delayMs(DEBOUNCE_RATE);
 }
 
 void initButton(uint8_t pin_code, uint8_t button_type, button_t* button){

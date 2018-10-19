@@ -7,7 +7,6 @@
 #include <avr/pgmspace.h>
 
 #include "arduino.h"
-#include "uart/uart.h"
 
 // Macros para manipulação dos registradores
 #define set_as_input(port, pin) (port &= ~(1<<pin))
@@ -79,7 +78,7 @@ void setPullUp(uint8_t pin_code){
   digitalWrite(pin_code, HIGH);
 }
 
-void delay_ms(uint16_t delay){
+void delayMs(uint16_t delay){
     //delay = delay * 1000;
     /*while(delay){
         asm volatile(
@@ -106,7 +105,7 @@ void delay_ms(uint16_t delay){
     }
 }
 
-void delay_us(uint16_t delay){
+void delayUs(uint16_t delay){
     while(delay){
         asm volatile(
             "ldi  r18, 5;"
@@ -120,7 +119,6 @@ void delay_us(uint16_t delay){
 
 // Função main do programa
 int main(){
-  uart_init();
   setup();
 
   while(1){

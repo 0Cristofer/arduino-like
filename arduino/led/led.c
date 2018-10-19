@@ -8,7 +8,7 @@
 void blinkTimeLed(uint8_t pin_code, uint16_t time){
   digitalWrite(pin_code, HIGH);
 
-  delay_ms(time);
+  delayMs(time);
 
   digitalWrite(pin_code, LOW);
 }

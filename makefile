@@ -1,11 +1,11 @@
 NOME = libtest
-LIBS = arduino/dp7s/dp7s.c
+LIBS = arduino/led/led.c arduino/button/button.c
 ARQUIVO = $(NOME).c
 ELF = $(NOME).elf
 SAIDA = $(NOME)
 
 all:
-	avr-gcc $(ARQUIVO) $(LIBS) arduino/main/arduino.c arduino/main/uart/uart.c -Os -mmcu=atmega328p -DF_CPU=16000000UL -fshort-enums -o $(ELF)
+	avr-gcc $(ARQUIVO) $(LIBS) arduino/main/arduino.c -include arduino/main/arduino.h -Os -mmcu=atmega328p -DF_CPU=16000000UL -fshort-enums -o $(ELF)
 	avr-objcopy -O ihex -R .eeprom $(ELF) $(SAIDA)
 
 install:
